@@ -803,7 +803,7 @@ var ProviderSet = wire.NewSet(
 	ProvideAccountTestService,
 	ProvideUpstreamBillingProbeService,
 	ProvideOllamaCloudUsageService,
-	ProvideWeComUsageAlertService,
+	ProvideUsageAlertService,
 	ProvideSettingService,
 	NewDataManagementService,
 	ProvideBackupService,

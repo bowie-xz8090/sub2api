@@ -114,7 +114,7 @@ func provideCleanup(
 	quotaFlusher *service.UserPlatformQuotaUsageFlusher,
 	upstreamBillingProbe *service.UpstreamBillingProbeService,
 	ollamaCloudUsage *service.OllamaCloudUsageService,
-	wecomUsageAlert *service.WeComUsageAlertService,
+	usageAlert *service.UsageAlertService,
 	auditLog *service.AuditLogService,
 	promptAudit *securityaudit.PromptService,
 ) func() {
@@ -351,9 +351,9 @@ func provideCleanup(
 				}
 				return nil
 			}},
-			{"WeComUsageAlertService", func() error {
-				if wecomUsageAlert != nil {
-					wecomUsageAlert.Stop()
+			{"UsageAlertService", func() error {
+				if usageAlert != nil {
+					usageAlert.Stop()
 				}
 				return nil
 			}},
