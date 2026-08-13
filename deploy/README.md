@@ -16,7 +16,10 @@ This directory contains files for deploying Sub2API on Linux servers and Apple-s
 |------|-------------|
 | `docker-compose.yml` | Docker Compose configuration (named volumes) |
 | `docker-compose.local.yml` | Docker Compose configuration (local directories, easy migration) |
+| `docker-compose.update.yml` | Application-image override used by the safe update script |
 | `docker-deploy.sh` | **One-click Docker deployment script (recommended)** |
+| `update-existing.sh` | Safely update an existing Compose deployment from source |
+| `UPDATE_EXISTING_DOCKER_CN.md` | Existing-container update guide (Chinese) |
 | `apple-container.sh` | Native Apple `container` lifecycle script |
 | `APPLE_CONTAINER.md` | Apple `container` deployment and operations guide |
 | `.env.example` | Container environment variables template |
@@ -179,6 +182,12 @@ SELECT
 - 详细步骤见：`deploy/DATAMANAGEMENTD_CN.md`
 
 ### Commands
+
+To update an existing deployment from this repository without recreating the
+PostgreSQL or Redis services, see
+[`UPDATE_EXISTING_DOCKER_CN.md`](./UPDATE_EXISTING_DOCKER_CN.md). The updater
+preserves the existing Compose project, volumes, `.env`, and `config.yaml`, and
+creates a database backup before replacing only the application container.
 
 For **local directory version** (docker-compose.local.yml):
 

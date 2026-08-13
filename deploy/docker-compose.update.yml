@@ -1,0 +1,6 @@
+services:
+  sub2api:
+    # Set by update-existing.sh. This override changes only the application
+    # image; volumes, environment, ports, networks, and dependencies continue
+    # to come from the existing deployment's Compose files.
+    image: ${SUB2API_UPDATE_IMAGE:?SUB2API_UPDATE_IMAGE must be set by update-existing.sh}

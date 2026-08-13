@@ -11,6 +11,7 @@ redis_data/
 .env
 
 # Backup files
+backups/
 *.backup
 *.bak
 
