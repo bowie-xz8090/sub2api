@@ -6,7 +6,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/LuckyKuang/sub2api-plus/internal/service"
+	"github.com/Wei-Shaw/sub2api/internal/service"
 )
 
 // ListDueUsageAlertAccounts returns accounts that may have at least one due usage-alert rule.

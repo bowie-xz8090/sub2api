@@ -14,9 +14,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/LuckyKuang/sub2api-plus/internal/config"
-	infraerrors "github.com/LuckyKuang/sub2api-plus/internal/pkg/errors"
-	"github.com/LuckyKuang/sub2api-plus/internal/pkg/logger"
+	"github.com/Wei-Shaw/sub2api/internal/config"
+	infraerrors "github.com/Wei-Shaw/sub2api/internal/pkg/errors"
+	"github.com/Wei-Shaw/sub2api/internal/pkg/logger"
 	"github.com/robfig/cron/v3"
 )
 
@@ -32,16 +32,16 @@ const (
 	WeComUsageAlertLastRunAtExtraKey  = "wecom_usage_alert_last_run_at"
 	WeComUsageAlertLastErrorExtraKey  = "wecom_usage_alert_last_error"
 
-	UsageAlertChannelWeCom   = "wecom"
-	UsageAlertChannelFeishu  = "feishu"
-	UsageAlertChannelCustom  = "custom"
+	UsageAlertChannelWeCom  = "wecom"
+	UsageAlertChannelFeishu = "feishu"
+	UsageAlertChannelCustom = "custom"
 
-	usageAlertMaxPerCycle       = 20
-	usageAlertCycleInterval     = time.Minute
-	usageAlertWebhookTimeout    = 15 * time.Second
-	usageAlertMarkdownMaxRunes  = 3500
-	usageAlertMaxRules          = 20
-	usageAlertMaxQuietRanges    = 10
+	usageAlertMaxPerCycle        = 20
+	usageAlertCycleInterval      = time.Minute
+	usageAlertWebhookTimeout     = 15 * time.Second
+	usageAlertMarkdownMaxRunes   = 3500
+	usageAlertMaxRules           = 20
+	usageAlertMaxQuietRanges     = 10
 	usageAlertMaxCooldownSeconds = 30 * 24 * 3600 // 30 days
 )
 
@@ -61,10 +61,10 @@ type UsageAlertRule struct {
 	Cron                 string     `json:"cron_expression"` // scheduled usage report
 	ForceProbe           bool       `json:"force_probe"`
 	ThresholdEnabled     bool       `json:"threshold_enabled"`
-	ThresholdPercent     int        `json:"threshold_percent"`      // 1-99 when threshold_enabled
-	ThresholdWatchCron   string     `json:"threshold_watch_cron"`   // required when threshold_enabled
-	CooldownSeconds       int        `json:"cooldown_seconds"`       // required when threshold_enabled
-	QuietHours           []string   `json:"quiet_hours"`            // optional daily ranges "HH:MM:SS-HH:MM:SS"
+	ThresholdPercent     int        `json:"threshold_percent"`    // 1-99 when threshold_enabled
+	ThresholdWatchCron   string     `json:"threshold_watch_cron"` // required when threshold_enabled
+	CooldownSeconds      int        `json:"cooldown_seconds"`     // required when threshold_enabled
+	QuietHours           []string   `json:"quiet_hours"`          // optional daily ranges "HH:MM:SS-HH:MM:SS"
 	NextRunAt            *time.Time `json:"next_run_at,omitempty"`
 	LastRunAt            *time.Time `json:"last_run_at,omitempty"`
 	ThresholdNextRunAt   *time.Time `json:"threshold_next_run_at,omitempty"`
@@ -708,7 +708,7 @@ func normalizeUsageAlertRule(input UsageAlertRule, now time.Time, allowDisabledI
 		ThresholdEnabled:     input.ThresholdEnabled,
 		ThresholdPercent:     input.ThresholdPercent,
 		ThresholdWatchCron:   strings.TrimSpace(input.ThresholdWatchCron),
-		CooldownSeconds:       input.CooldownSeconds,
+		CooldownSeconds:      input.CooldownSeconds,
 		QuietHours:           nil,
 		NextRunAt:            input.NextRunAt,
 		LastRunAt:            input.LastRunAt,
